@@ -1,6 +1,12 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { SportsServiceService } from 'src/app/services/api/sports-service.service';
 import { SplashScreenStateService } from 'src/app/services/splash-screen-state.service';
+import { FilterComponent } from './dialogs/filter/filter.component';
+import { SortComponent } from './dialogs/sort/sort.component';
+import { Tiles } from 'src/app/models/tiles';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
 
 
 export interface PeriodicElement {
@@ -10,20 +16,6 @@ export interface PeriodicElement {
   symbol: string;
 }
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  { position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H' },
-  { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' },
-  { position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li' },
-  { position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be' },
-  { position: 5, name: 'Boron', weight: 10.811, symbol: 'B' },
-  { position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C' },
-  { position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N' },
-  { position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O' },
-  { position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F' },
-  { position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne' },
-];
-
-
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -31,23 +23,82 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class HomeComponent implements OnInit, AfterViewInit {
 
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = ELEMENT_DATA;
-  clickedRows = new Set<PeriodicElement>();
+  ELEMENT_DATA!: Tiles[]
+  displayedColumns: string[] = ["id", "tile_name", "material", "tile_size", "color", "color_variation", "finish",
+    "looks_like", "quantity_per_box", "space", "picture", "actions"
+  ];
+  dataSource = new MatTableDataSource<Tiles>(this.ELEMENT_DATA);
+  clickedRows = new Set<any>();
+
+  hide = false;
+
+  hiddenColumns: Array<string> = [];
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+
 
   constructor(
-    private splashScreenStateService: SplashScreenStateService, private api: SportsServiceService
+    public dialog: MatDialog, private splashScreenStateService: SplashScreenStateService,
+    private api: SportsServiceService
   ) { }
 
   ngOnInit(): void {
-    this.api.getNews().subscribe((response: any) => console.log(response));
+    this.getAllTiles();
   }
 
+  getAllTiles() {
+    this.api.getTiles().subscribe((response: any) => this.dataSource.data = response.data as Tiles[]);
+
+  }
   ngAfterViewInit(): void {
+    this.dataSource.paginator = this.paginator;
     setTimeout(() => {
       this.splashScreenStateService.stop();
-    }, 5000);
+    }, 500);
   }
 
+  hideColumn(column_name: string) {
+    // console.log(column_name);
+    console.log(column_name)
+    let index = this.displayedColumns.findIndex(d => d == column_name);
+    console.log(index)
+    if (index >= 0) {
+      this.displayedColumns.splice(index, 1);
+      this.hiddenColumns.push(column_name);
+    }
+    else {
+      this.hiddenColumns.splice(index, 1)
+      this.displayedColumns.push(column_name);
+    }
+  }
+
+  hideAllColumns() {
+    this.displayedColumns.length = 0;
+    this.hiddenColumns.push("id", "tile_name", "material", "tile_size", "color", "color_variation", "finish",
+      "looks_like", "quantity_per_box", "space", "picture", "actions");
+  }
+
+  showAllColumns() {
+    this.hiddenColumns.length = 0;
+    this.displayedColumns.push("id", "tile_name", "material", "tile_size", "color", "color_variation", "finish",
+      "looks_like", "quantity_per_box", "space", "picture", "actions");
+
+  }
+
+  openSortDialog() {
+    const dialogRef = this.dialog.open(SortComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+
+  openFilterDialog() {
+    const dialogRef = this.dialog.open(FilterComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
 
 }

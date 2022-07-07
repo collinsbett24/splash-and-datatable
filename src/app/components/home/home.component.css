@@ -15,3 +15,88 @@
 .demo-row-is-clicked {
     font-weight: bold;
 }
+
+.main {
+    display: flex;
+    width: 100%;
+}
+
+.main .main-container {
+    width: 100%;
+    height: calc(100vh - 30px);
+}
+
+.container-sidenav {
+
+    min-width: 15%;
+    display: flex;
+    height: calc(100vh - 135px);
+    align-items: center;
+    justify-content: center;
+    /* height: 100%; */
+}
+
+.main .table {
+    width: 100%;
+    height: calc(100vh - 150px);
+    display: block;
+    overflow: auto;
+    position: relative;
+    margin-bottom: 80px;
+}
+
+.main .table .example-sidenav-content {
+    margin: 5px;
+    margin-right: 10px;
+    display: flex;
+    justify-content: end;
+    align-items: right;
+}
+
+.main .side-menu {
+    border: ridge;
+    border-width: 0.1px;
+    border-radius: 5px;
+    position: relative;
+    height: calc(100vh - 140px);
+    background-color: white;
+    overflow: auto;
+}
+
+.main .side-menu #sort-button {
+    width: 100%;
+}
+
+.main .side-menu .display-columns {
+    display: block;
+    margin-top: 5px;
+}
+
+.main .side-menu .display-columns .displayed-columns {
+    /* text-align: center; */
+    padding: 2px;
+    font-size: smaller;
+}
+
+#visibility {
+    margin-right: 0.5rem;
+}
+
+.main .side-menu .display-columns span {
+    color: blueviolet;
+    font-weight: bolder;
+    padding: 5px;
+    margin-top: 10px;
+}
+
+::-webkit-scrollbar {
+    width: 4px;
+    overflow-y: scroll;
+    background: grey;
+    box-shadow: inset 0 0 4px #707070;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgb(255, 0, 191);
+    border-radius: 10px;
+}

@@ -15,5 +15,8 @@ export class SportsServiceService {
     return this.http.get<any>(this.ServerUrl);
   }
 
-
+  getTiles(): Observable<any> {
+    return this.http.get<any>(`http://nitco.liftwave.co.ke/api/getTile/Kitchen Tiles`);
+    // return this.http.get<any>(`http://nitco.liftwave.co.ke/api/getTile/${Term}`);
+  }
 }

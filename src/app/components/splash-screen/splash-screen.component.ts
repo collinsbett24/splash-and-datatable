@@ -32,7 +32,7 @@ export class SplashScreenComponent implements OnInit {
     setTimeout(() => {
       // After the transition is ended the showSplash will be hided
       this.showSplash = !this.showSplash;
-    }, 1000);
+    }, 100);
   }
 
 }

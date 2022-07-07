@@ -1,45 +1,165 @@
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table">
-    <!-- Position Column -->
-    <ng-container matColumnDef="position">
-        <th mat-header-cell *matHeaderCellDef>No.</th>
-        <td mat-cell *matCellDef="let element">{{element.position}}</td>
-    </ng-container>
+<div class="main">
+    <mat-drawer-container class="main-container" autosize>
+        <mat-drawer position="end" #drawer class="container-sidenav" mode="side">
+            <div class="side-menu">
+                <div>
+                    <span id="span"><b>View Option</b></span>
+                    <div>
+                        <button mat-button mat-icon-button id="sort-button" color="accent" (click)="openSortDialog()">
+                            <mat-icon>swap_vert</mat-icon>Sort By
+                        </button>
+                    </div>
+                    <div>
+                        <button mat-button mat-icon-button id="sort-button" color="accent" (click)="openFilterDialog()">
+                            <mat-icon>filter</mat-icon>
+                            Filter
+                        </button>
+                    </div>
+                </div>
+                <mat-divider></mat-divider>
+                <div *ngIf="displayedColumns.length > 0" class="display-columns">
+                    <span class="text-shown">Shown</span><button (click)="hideAllColumns()" mat-button
+                        color="accent">Hide
+                        All</button>
 
-    <!-- Name Column -->
-    <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef>Name</th>
-        <td mat-cell *matCellDef="let element">{{element.name}}</td>
-    </ng-container>
+                    <mat-list-item *ngFor="let column of displayedColumns">
 
-    <!-- Weight Column -->
-    <ng-container matColumnDef="weight">
-        <th mat-header-cell *matHeaderCellDef>Weight</th>
-        <td mat-cell *matCellDef="let element">{{element.weight}}</td>
-    </ng-container>
+                        <div mat-line class="displayed-columns">
+                            <button mat-icon-button>
+                                <mat-icon>list</mat-icon>
+                            </button>
+                            {{column | titlecase}}
 
-    <!-- Symbol Column -->
-    <ng-container matColumnDef="symbol">
-        <th mat-header-cell *matHeaderCellDef>Symbol</th>
-        <td mat-cell *matCellDef="let element">{{element.symbol}}</td>
-    </ng-container>
+                            <button (click)="hideColumn(column)" id="visibility" mat-icon-button matSuffix>
+                                <mat-icon>visibility</mat-icon>
+                            </button>
+                        </div>
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row (click)="clickedRows.add(row)" [class.demo-row-is-clicked]="clickedRows.has(row)"
-        *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>
-<!-- 
-<div>
-    <h3>
-        Click Log
-    </h3>
+                    </mat-list-item>
+
+                </div>
+                <mat-divider></mat-divider>
+                <div *ngIf="hiddenColumns.length > 0" class="display-columns">
+                    <span class="text-shown">Hidden</span> <button (click)="showAllColumns()" mat-button
+                        color="accent">Show
+                        All</button>
+
+                    <mat-list-item *ngFor="let column of hiddenColumns">
+                        <div mat-line class="displayed-columns">
+                            <button mat-icon-button>
+                                <mat-icon>list</mat-icon>
+                            </button>
+                            {{column | titlecase}}
+
+                            <button (click)="hideColumn(column)" id="visibility" mat-icon-button matSuffix>
+                                <mat-icon>visibility_off</mat-icon>
+                            </button>
+                        </div>
+                    </mat-list-item>
+                </div>
+            </div>
+
+        </mat-drawer>
+        <div class="table">
+            <div class="example-sidenav-content">
+                <button mat-raised-button color="accent" (click)="drawer.toggle()">View Options</button>
+            </div>
+            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table">
+                <!-- Position Column -->
+                <ng-container matColumnDef="id">
+                    <th mat-header-cell *matHeaderCellDef>No.</th>
+                    <td mat-cell *matCellDef="let element; let i = index">{{i + 1}}</td>
+                </ng-container>
+
+                <!-- Symbol Column -->
+                <ng-container matColumnDef="tile_name">
+                    <th mat-header-cell *matHeaderCellDef>Tile Name</th>
+                    <td mat-cell *matCellDef="let element">{{element.tile_name}}</td>
+                </ng-container>
+
+                <!-- Symbol Column -->
+                <ng-container matColumnDef="tile_size">
+                    <th mat-header-cell *matHeaderCellDef>Tile Size</th>
+                    <td mat-cell *matCellDef="let element">{{element.tile_size}}</td>
+                </ng-container>
+
+                <!-- Weight Column -->
+                <ng-container matColumnDef="color">
+                    <th mat-header-cell *matHeaderCellDef>Color</th>
+                    <td mat-cell *matCellDef="let element">{{element.color }}</td>
+                </ng-container>
+
+                <!-- Symbol Column -->
+                <ng-container matColumnDef="color_variation">
+                    <th mat-header-cell *matHeaderCellDef>Col. Var</th>
+                    <td mat-cell *matCellDef="let element">{{element.color_variation }}</td>
+                </ng-container>
+                <!-- Name Column -->
+                <ng-container matColumnDef="finish">
+                    <th mat-header-cell *matHeaderCellDef>Finish</th>
+                    <td mat-cell *matCellDef="let element">{{element.finish}}</td>
+                </ng-container>
+
+                <!-- Weight Column -->
+                <ng-container matColumnDef="looks_like">
+                    <th mat-header-cell *matHeaderCellDef>Looks Like</th>
+                    <td mat-cell *matCellDef="let element">{{element.looks_like}}</td>
+                </ng-container>
+
+                <!-- Symbol Column -->
+                <ng-container matColumnDef="material">
+                    <th mat-header-cell *matHeaderCellDef>Material</th>
+                    <td mat-cell *matCellDef="let element">{{element.material}}</td>
+                </ng-container>
+                <!-- Name Column -->
+                <ng-container matColumnDef="quantity_per_box">
+                    <th mat-header-cell *matHeaderCellDef>Q/box</th>
+                    <td mat-cell *matCellDef="let element">{{element.quantity_per_box}}</td>
+                </ng-container>
+
+                <!-- Weight Column -->
+                <ng-container matColumnDef="space">
+                    <th mat-header-cell *matHeaderCellDef>Space</th>
+                    <td mat-cell *matCellDef="let element">{{element.space}}</td>
+                </ng-container>
+
+                <!-- Symbol Column -->
+                <ng-container matColumnDef="picture">
+                    <th mat-header-cell *matHeaderCellDef>Tile Picture</th>
+                    <td mat-cell *matCellDef="let element"><img src="{{element.image_name}}"></td>
+                </ng-container>
+
+                <ng-container matColumnDef="actions" stickyEnd>
+                    <th mat-header-cell *matHeaderCellDef aria-label="row actions">&nbsp;</th>
+                    <td mat-cell *matCellDef="let element">
+                        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                            <mat-icon>more_vert</mat-icon>
+                        </button>
+                        <mat-menu #menu="matMenu">
+                            <button mat-menu-item>
+                                <mat-icon color="primary">edit</mat-icon>
+                                <span>Edit</span>
+                            </button>
+                            <button mat-menu-item>
+                                <mat-icon color="warn">delete</mat-icon>
+                                <span>Delete</span>
+                            </button>
+                        </mat-menu>
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row (click)="clickedRows.add(row)" [class.demo-row-is-clicked]="clickedRows.has(row)"
+                    *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+            <mat-paginator [pageSizeOptions]="[10,15, 20]" showFirstLastButtons
+                aria-label="Select page of periodic elements">
+            </mat-paginator>
+        </div>
+
+    </mat-drawer-container>
+
+
+
+
 </div>
-
-<div *ngIf="!clickedRows.size">
-    Clicked rows will be logged here
-</div>
-
-<ul>
-    <li *ngFor="let clickedRow of clickedRows">
-        Clicked on {{clickedRow.name}}
-    </li>
-</ul> -->
