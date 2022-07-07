@@ -7,6 +7,7 @@ import { SortComponent } from './dialogs/sort/sort.component';
 import { Tiles } from 'src/app/models/tiles';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
+import { EditComponent } from './dialogs/edit/edit.component';
 
 
 export interface PeriodicElement {
@@ -22,6 +23,8 @@ export interface PeriodicElement {
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit, AfterViewInit {
+
+  panelOpenState = false;
 
   ELEMENT_DATA!: Tiles[]
   displayedColumns: string[] = ["id", "tile_name", "material", "tile_size", "color", "color_variation", "finish",
@@ -57,20 +60,26 @@ export class HomeComponent implements OnInit, AfterViewInit {
     }, 500);
   }
 
-  hideColumn(column_name: string) {
+  hideColumn(column_name: string, show: string) {
     // console.log(column_name);
     console.log(column_name)
-    let index = this.displayedColumns.findIndex(d => d == column_name);
-    console.log(index)
-    if (index >= 0) {
+
+    if (show === 'hide') {
+      let index = this.displayedColumns.findIndex(d => d == column_name);
+      console.log(index)
       this.displayedColumns.splice(index, 1);
       this.hiddenColumns.push(column_name);
     }
     else {
+      let index = this.hiddenColumns.findIndex(d => d == column_name);
+      console.log(index)
       this.hiddenColumns.splice(index, 1)
       this.displayedColumns.push(column_name);
     }
   }
+
+
+
 
   hideAllColumns() {
     this.displayedColumns.length = 0;
@@ -85,8 +94,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   }
 
-  openSortDialog() {
-    const dialogRef = this.dialog.open(SortComponent);
+  openEditDialog() {
+    const dialogRef = this.dialog.open(EditComponent);
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);

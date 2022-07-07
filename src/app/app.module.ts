@@ -26,7 +26,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSidenavModule } from '@angular/material/sidenav';
-
+import { MatExpansionModule } from '@angular/material/expansion';
+import { EditComponent } from './components/home/dialogs/edit/edit.component';
 // import { MatLabelModule} from '@angular/material/';
 
 @NgModule({
@@ -36,7 +37,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     SplashScreenComponent,
     UpdateDataComponent,
     FilterComponent,
-    SortComponent
+    SortComponent,
+    EditComponent
   ],
   imports: [
     BrowserModule,
@@ -55,7 +57,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     MatInputModule,
     MatPaginatorModule,
     MatMenuModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatExpansionModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -2,35 +2,70 @@
     <mat-drawer-container class="main-container" autosize>
         <mat-drawer position="end" #drawer class="container-sidenav" mode="side">
             <div class="side-menu">
-                <div>
-                    <span id="span"><b>View Option</b></span>
-                    <div>
-                        <button mat-button mat-icon-button id="sort-button" color="accent" (click)="openSortDialog()">
-                            <mat-icon>swap_vert</mat-icon>Sort By
+                <div class="search">
+                    <div class="span">
+                        <span id="span"><b>View Option</b></span>
+                        <span id="spacer"></span>
+                        <button mat-icon-button (click)="drawer.toggle()">
+                            <mat-icon>close</mat-icon>
                         </button>
                     </div>
                     <div>
+                        <mat-accordion>
+                            <mat-expansion-panel hideToggle>
+                                <mat-expansion-panel-header>
+                                    <mat-panel-title>
+                                        <!-- <button mat-button id="sort-button" color="accent"> -->
+                                        <button mat-button color="accent"><b color="accent">Filter</b></button>
+
+                                        <!-- </button> -->
+                                    </mat-panel-title>
+                                </mat-expansion-panel-header>
+                                <app-filter></app-filter>
+                            </mat-expansion-panel>
+                        </mat-accordion>
+                        <br />
+                        <mat-accordion>
+                            <mat-expansion-panel hideToggle>
+                                <mat-expansion-panel-header>
+                                    <mat-panel-title>
+                                        <!-- <button mat-button id="sort-button" color="accent"> -->
+
+                                        <button mat-button color="accent"><b>Search</b></button>
+                                        <!-- </button> -->
+                                    </mat-panel-title>
+                                </mat-expansion-panel-header>
+                                <app-sort></app-sort>
+                            </mat-expansion-panel>
+                        </mat-accordion>
+
+                    </div>
+                    <!-- <div>
                         <button mat-button mat-icon-button id="sort-button" color="accent" (click)="openFilterDialog()">
                             <mat-icon>filter</mat-icon>
                             Filter
                         </button>
-                    </div>
+                    </div> -->
                 </div>
                 <mat-divider></mat-divider>
                 <div *ngIf="displayedColumns.length > 0" class="display-columns">
-                    <span class="text-shown">Shown</span><button (click)="hideAllColumns()" mat-button
-                        color="accent">Hide
-                        All</button>
+                    <div class="shown-text">
+                        <span class="text-shown">Shown</span>
+                        <span id="spacer"></span>
+                        <button (click)="hideAllColumns()" mat-raised-button color="accent">Hide
+                            All</button>
+                    </div>
 
                     <mat-list-item *ngFor="let column of displayedColumns">
 
                         <div mat-line class="displayed-columns">
-                            <button mat-icon-button>
+                            <!-- <button mat-icon-button>
                                 <mat-icon>list</mat-icon>
-                            </button>
+                            </button> -->
                             {{column | titlecase}}
+                            <span id="spacer"></span>
 
-                            <button (click)="hideColumn(column)" id="visibility" mat-icon-button matSuffix>
+                            <button (click)="hideColumn(column, 'hide')" id="visibility" mat-icon-button matSuffix>
                                 <mat-icon>visibility</mat-icon>
                             </button>
                         </div>
@@ -40,18 +75,22 @@
                 </div>
                 <mat-divider></mat-divider>
                 <div *ngIf="hiddenColumns.length > 0" class="display-columns">
-                    <span class="text-shown">Hidden</span> <button (click)="showAllColumns()" mat-button
-                        color="accent">Show
-                        All</button>
+                    <div class="shown-text">
+                        <span class="text-shown">Hidden</span>
+                        <span id="spacer"></span>
+                        <button (click)="showAllColumns()" mat-raised-button color="accent">Show
+                            All</button>
+                    </div>
 
                     <mat-list-item *ngFor="let column of hiddenColumns">
                         <div mat-line class="displayed-columns">
-                            <button mat-icon-button>
+                            <!-- <button mat-icon-button>
                                 <mat-icon>list</mat-icon>
-                            </button>
+                            </button> -->
                             {{column | titlecase}}
+                            <span id="spacer"></span>
 
-                            <button (click)="hideColumn(column)" id="visibility" mat-icon-button matSuffix>
+                            <button (click)="hideColumn(column, 'show')" id="visibility" mat-icon-button matSuffix>
                                 <mat-icon>visibility_off</mat-icon>
                             </button>
                         </div>
@@ -60,10 +99,10 @@
             </div>
 
         </mat-drawer>
+        <div class="example-sidenav-content">
+            <button mat-raised-button color="accent" (click)="drawer.toggle()">View Options</button>
+        </div>
         <div class="table">
-            <div class="example-sidenav-content">
-                <button mat-raised-button color="accent" (click)="drawer.toggle()">View Options</button>
-            </div>
             <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table">
                 <!-- Position Column -->
                 <ng-container matColumnDef="id">
@@ -136,7 +175,7 @@
                             <mat-icon>more_vert</mat-icon>
                         </button>
                         <mat-menu #menu="matMenu">
-                            <button mat-menu-item>
+                            <button mat-menu-item (click)="openEditDialog()">
                                 <mat-icon color="primary">edit</mat-icon>
                                 <span>Edit</span>
                             </button>
@@ -152,7 +191,7 @@
                 <tr mat-row (click)="clickedRows.add(row)" [class.demo-row-is-clicked]="clickedRows.has(row)"
                     *matRowDef="let row; columns: displayedColumns;"></tr>
             </table>
-            <mat-paginator [pageSizeOptions]="[10,15, 20]" showFirstLastButtons
+            <mat-paginator [pageSizeOptions]="[5,10,15, 20]" showFirstLastButtons
                 aria-label="Select page of periodic elements">
             </mat-paginator>
         </div>
