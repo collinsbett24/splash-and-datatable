@@ -2,7 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, map, Observable, of, retry } from 'rxjs';
 import { ajax } from 'rxjs/ajax';
-import { User } from 'src/app/models/user';
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -20,7 +21,6 @@ export class SportsServiceService {
   getTiles(): Observable<any> {
     return this.http.get<any>(`http://nitco.liftwave.co.ke/api/getTile/Kitchen Tiles`);
   }
-
 
   //get users from randommeUser Api
   UsersApi(page: number, page_size: number) {

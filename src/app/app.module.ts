@@ -28,7 +28,11 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { EditComponent } from './components/home/dialogs/edit/edit.component';
-// import { MatLabelModule} from '@angular/material/';
+import { NewsComponentComponent } from './components/news-component/news-component.component';
+import { MatCardModule } from '@angular/material/card';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { UsersComponentComponent } from './components/users-component/users-component.component';
+import { MatBadgeModule } from '@angular/material/badge';
 
 @NgModule({
   declarations: [
@@ -38,7 +42,9 @@ import { EditComponent } from './components/home/dialogs/edit/edit.component';
     UpdateDataComponent,
     FilterComponent,
     SortComponent,
-    EditComponent
+    EditComponent,
+    NewsComponentComponent,
+    UsersComponentComponent
   ],
   imports: [
     BrowserModule,
@@ -58,7 +64,10 @@ import { EditComponent } from './components/home/dialogs/edit/edit.component';
     MatPaginatorModule,
     MatMenuModule,
     MatSidenavModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatCardModule,
+    MatProgressBarModule,
+    MatBadgeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

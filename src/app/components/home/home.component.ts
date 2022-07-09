@@ -8,6 +8,7 @@ import { Tiles } from 'src/app/models/tiles';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { EditComponent } from './dialogs/edit/edit.component';
+import { MatSort } from '@angular/material/sort';
 
 
 export interface PeriodicElement {
@@ -38,6 +39,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
   hiddenColumns: Array<string> = [];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
+
 
 
   constructor(
@@ -55,6 +58,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
     setTimeout(() => {
       this.splashScreenStateService.stop();
     }, 500);
@@ -78,8 +82,14 @@ export class HomeComponent implements OnInit, AfterViewInit {
     }
   }
 
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
 
-
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
 
   hideAllColumns() {
     this.displayedColumns.length = 0;

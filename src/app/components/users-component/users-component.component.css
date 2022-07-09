@@ -1,0 +1,85 @@
+.header {
+    display: flex;
+}
+
+#header {
+    width: 30%;
+    justify-self: start;
+    padding: 20px 0px 20px 20px;
+    text-decoration: underline;
+}
+
+.buttons {
+    display: flex;
+    width: 70%;
+    padding: 0px 20px 20px 0px;
+    justify-self: end;
+    justify-content: end;
+    align-items: flex-end;
+}
+
+.mat-expansion-panel-header-description {
+    flex-basis: 0;
+}
+
+.mat-form-field+.mat-form-field {
+    margin-left: 8px;
+}
+
+.example-button-container {
+    display: flex;
+    justify-content: center;
+    width: 120px;
+}
+
+.main {
+    background-color: rgb(245, 244, 244);
+}
+
+.example-card {
+    width: 300px;
+    margin-bottom: 8px;
+
+}
+
+.example-card:hover {
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;
+
+}
+
+.content {
+    display: flexbox;
+    padding-left: 5rem;
+}
+
+.card {
+    margin: 10px;
+    display: inline-block;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.contact {
+    display: flex;
+}
+
+.contact span {
+    opacity: 60%;
+}
+
+.contact .email {
+    width: 50%;
+    justify-self: start;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.contact .phone {
+    width: 30%;
+    justify-self: end;
+}
+
+.contact .gender {
+    width: 20%;
+    justify-self: end;
+}
