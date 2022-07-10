@@ -60,7 +60,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.dataSource.sort = this.sort;
     setTimeout(() => {
       this.splashScreenStateService.stop();
-    }, 500);
+    }, 3000);
   }
 
   hideColumn(column_name: string, show: string) {

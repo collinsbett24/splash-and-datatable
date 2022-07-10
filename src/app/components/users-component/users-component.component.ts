@@ -77,7 +77,7 @@ export class UsersComponentComponent implements OnInit, AfterViewInit {
 
     setTimeout(() => {
       this.splashScreenStateService.stop();
-    }, 500);
+    }, 3000);
 
     this.scroller.elementScrolled().pipe(
       map(() => this.scroller.measureScrollOffset("bottom")),

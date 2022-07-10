@@ -13,7 +13,7 @@ export class BitcoinSocketsComponent implements OnInit, OnDestroy, AfterViewInit
   ngAfterViewInit(): void {
     setTimeout(() => {
       this.splashScreenStateService.stop();
-    }, 500);
+    }, 3000);
   }
 
   ngOnInit(): void {
