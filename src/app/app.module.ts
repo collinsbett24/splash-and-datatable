@@ -39,6 +39,7 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 @NgModule({
   declarations: [
@@ -65,6 +66,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     ScrollingModule,
     MatProgressSpinnerModule,
     MatButtonModule,
+    MatToolbarModule,
     MatFormFieldModule,
     MatIconModule,
     MatListModule,

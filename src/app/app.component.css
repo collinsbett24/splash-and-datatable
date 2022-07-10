@@ -2,18 +2,27 @@
     background-color: whitesmoke;
 }
 
+.example-spacer {
+    flex: 1 1 auto;
+}
+
 .main {
     width: 100%;
     height: 100%;
     background-color: red;
 }
 
+.toolbar {
+    padding-right: 1rem;
+}
+
 .toolbar a {
     color: white;
-    margin-right: 5px;
-    font-size: medium;
+    margin: 5px;
+
+    /* font-size: medium; */
 }
 
 .toolbar a:hover {
-    color: whitesmoke;
+    color: rgb(238, 120, 120);
 }
