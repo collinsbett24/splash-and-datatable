@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
+import { timeout, timestamp } from 'rxjs';
 import { BitcoinServiceService } from 'src/app/services/bitcoin/bitcoin-service.service';
 import { SplashScreenStateService } from 'src/app/services/splash-screen-state.service';
 
@@ -17,7 +18,12 @@ export class BitcoinSocketsComponent implements OnInit, OnDestroy, AfterViewInit
   }
 
   ngOnInit(): void {
+
     this.bitcoinapi.openWebSocket();
+    setTimeout(() => {
+      this.bitcoinapi.closeSocket();
+    }, 10000)
+
   }
 
 
