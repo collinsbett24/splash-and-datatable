@@ -20,7 +20,7 @@ export class SportsServiceService {
 
   //getTiles from diamond Surfaces
   getTiles(): Observable<any> {
-    return this.http.get<any>(`http://nitco.liftwave.co.ke/api/getTile/Kitchen Tiles`);
+    return this.http.get<any>(`https://nitco.liftwave.co.ke/api/getTile/Kitchen Tiles`);
   }
 
   //get users from randommeUser Api
