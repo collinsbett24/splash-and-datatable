@@ -8,6 +8,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './components/home/home.component';
 import { SplashScreenComponent } from './components/splash-screen/splash-screen.component';
 import { UpdateDataComponent } from './components/update-data/update-data.component';
+import { DisplayLikedComponent } from './components/users-component/dialog/display-liked/display-liked.component';
+import { SnackbarComponent } from './components/users-component/dialog/snackbar/snackbar.component';
+import { NewsComponentComponent } from './components/news-component/news-component.component';
+import { BitcoinSocketsComponent } from './components/bitcoin-sockets/bitcoin-sockets.component';
 
 
 // Material imports
@@ -28,11 +32,13 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { EditComponent } from './components/home/dialogs/edit/edit.component';
-import { NewsComponentComponent } from './components/news-component/news-component.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { UsersComponentComponent } from './components/users-component/users-component.component';
 import { MatBadgeModule } from '@angular/material/badge';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { ScrollingModule } from '@angular/cdk/scrolling';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -44,7 +50,10 @@ import { MatBadgeModule } from '@angular/material/badge';
     SortComponent,
     EditComponent,
     NewsComponentComponent,
-    UsersComponentComponent
+    UsersComponentComponent,
+    DisplayLikedComponent,
+    SnackbarComponent,
+    BitcoinSocketsComponent
   ],
   imports: [
     BrowserModule,
@@ -53,6 +62,8 @@ import { MatBadgeModule } from '@angular/material/badge';
     MatTableModule,
     BrowserAnimationsModule,
     MatDividerModule,
+    ScrollingModule,
+    MatProgressSpinnerModule,
     MatButtonModule,
     MatFormFieldModule,
     MatIconModule,
@@ -64,6 +75,7 @@ import { MatBadgeModule } from '@angular/material/badge';
     MatPaginatorModule,
     MatMenuModule,
     MatSidenavModule,
+    MatSnackBarModule,
     MatExpansionModule,
     MatCardModule,
     MatProgressBarModule,

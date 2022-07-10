@@ -1,0 +1,29 @@
+.cart-items {
+    min-width: 250px;
+    max-width: 500px;
+    max-height: calc(100vh - 120px);
+    overflow: auto;
+}
+
+#header {
+    text-decoration: underline dotted;
+    text-align: center;
+    font-weight: bolder;
+}
+
+.person {
+    display: flex;
+    width: 95%;
+    justify-content: space-between;
+    padding: 5px;
+    align-items: center;
+}
+
+.person #name {
+    justify-self: start;
+    font-weight: bolder;
+}
+
+.person #phone {
+    justify-self: end;
+}

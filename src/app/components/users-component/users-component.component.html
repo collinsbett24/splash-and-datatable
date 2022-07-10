@@ -1,55 +1,69 @@
 <main class="main">
-    <div class="header">
-        <h2 id="header">Random User API</h2>
+    <div class="content">
+        <h2 class="header-h1">Random User API</h2>
         <div class="buttons">
             <div class="example-button-container">
-                <button mat-raised-button color="basic" aria-label="Example icon button with a home icon">
+                <button mat-raised-button [matMenuTriggerFor]="belowMenu">
+                    <mat-icon>menu</mat-icon> Export
+                </button>
+                <mat-menu #belowMenu="matMenu" yPosition="below">
+                    <a href="{{csvUrl}}" mat-menu-item>csv</a>
+                    <a href="{{xmlUrl}}" mat-menu-item>xml</a>
+                </mat-menu>
+            </div>
+            <div class="example-button-container">
+                <button mat-raised-button color="basic">
+                    <span id="folowing">100</span>
                     <!-- <mat-icon>cart</mat-icon> -->
-                    <mat-icon matBadge="1" matBadgeColor="accent">shopping_cart</mat-icon>
-                    Checkout
+                    <!-- <mat-icon matBadge="1" matBadgeColor="accent">recent_actors</mat-icon> -->
+                    <span>Folowing</span>
                 </button>
             </div>
             <div class="example-button-container">
-                <button mat-raised-button color="basic" aria-label="Example icon button with a home icon">
+                <button (click)="openDialog('3000ms', '1500ms')" mat-raised-button color="basic"
+                    aria-label="Example icon button with a home icon">
                     <!-- <mat-icon>cart</mat-icon> -->
                     <mat-icon matBadge="{{Likes | number}}" matBadgeColor="accent">favorite</mat-icon>Liked
                 </button>
-
             </div>
-            <mat-accordion>
-                <mat-expansion-panel hideToggle>
-                    <mat-expansion-panel-header>
-                        <mat-panel-title>
-                            Filter Data
-                        </mat-panel-title>
-                        <mat-panel-description>
-                            By Nationality and Gender
-                            <mat-icon>sort</mat-icon>
-                        </mat-panel-description>
-                    </mat-expansion-panel-header>
-                    <mat-form-field appearance="fill">
-                        <mat-label>Gender</mat-label>
-                        <mat-select ngModel #gender>
-                            <mat-option *ngFor="let gen of Gender" value="{{gen}}">{{gen}}</mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                    <mat-form-field appearance="fill">
-                        <mat-label>Country</mat-label>
-                        <mat-select ngModel #nationality>
-                            <mat-option *ngFor="let nation of Nationality" value="{{nation.value}}">
-                                {{nation.nationality}}</mat-option>
-                            <mat-option value="two">Ghana</mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                    <mat-action-row>
-                        <button mat-raised-button color="basic"
-                            (click)="filterData(gender.value, nationality.value)">Filter</button>
-                    </mat-action-row>
-                </mat-expansion-panel>
-            </mat-accordion>
         </div>
+        <mat-accordion class="buttons">
+            <mat-expansion-panel hideToggle>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Filter Data
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        <mat-icon>sort</mat-icon>
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                <mat-form-field appearance="fill">
+                    <mat-label>Gender</mat-label>
+                    <mat-select ngModel #gender>
+                        <mat-option *ngFor="let gen of Gender" value="{{gen}}">{{gen}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Country</mat-label>
+                    <mat-select ngModel #nationality>
+                        <mat-option *ngFor="let nation of Nationality" value="{{nation.value}}">
+                            {{nation.nationality}}</mat-option>
+                        <mat-option value="two">Ghana</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-action-row>
+                    <button mat-raised-button color="basic"
+                        (click)="filterData(gender.value, nationality.value)">Filter</button>
+                </mat-action-row>
+            </mat-expansion-panel>
+        </mat-accordion>
+        <!-- <mat-paginator #paginator [length]="totalRows" [pageIndex]="currentPage" [pageSize]="pageSize"
+            [pageSizeOptions]="pageSizeOptions" (page)="pageChanged($event)" aria-label="Select page">
+        </mat-paginator> -->
     </div>
-    <div class="content">
+</main>
+<div class="main">
+    <cdk-virtual-scroll-viewport #scroller class="vitualization-table" itemSize="72">
         <div class="card" *ngFor="let data of Data">
             <mat-card class="example-card">
                 <mat-card-title-group>
@@ -58,7 +72,7 @@
                         <H5>From: {{data.location.state}} | {{data.dob.age}} Yrs Old</H5>
                     </mat-card-subtitle>
                     <mat-card-subtitle> Experience: {{data.registered.age}} Yrs</mat-card-subtitle>
-                    <img mat-card-md-image src="{{data.picture.medium}}">
+                    <img id="user-img" mat-card-md-image src="{{data.picture.medium}}">
                 </mat-card-title-group>
                 <mat-card-content>
                     <h5><u>Contact Info</u></h5>
@@ -78,18 +92,19 @@
                     </div>
                 </mat-card-content>
                 <mat-divider inset></mat-divider>
-                <mat-card-actions>
-                    <button mat-button>LIKE</button>
-                    <button mat-button>FOLLOW</button>
-                    <button mat-button>CONTACT</button>
+                <mat-card-actions class="card-actions">
+                    <button mat-raised-button (click)="addToLikes(data)">LIKE</button>
+                    <button mat-raised-button disabled>FOLLOW</button>
+                    <button mat-raised-button>CONTACT</button>
                 </mat-card-actions>
-                <!-- <mat-card-footer>
-            <mat-progress-bar mode="indeterminate"></mat-progress-bar>
-        </mat-card-footer> -->
+
             </mat-card>
         </div>
-        <mat-paginator #paginator [length]="totalRows" [pageIndex]="currentPage" [pageSize]="pageSize"
-            [pageSizeOptions]="pageSizeOptions" (page)="pageChanged($event)" aria-label="Select page">
-        </mat-paginator>
-    </div>
-</main>
+        <div *ngIf="Loading" class="spinner">
+            <!-- <mat-spinner color="accent"></mat-spinner> -->
+            <img src="assets/images/loading.gif">
+            <!-- <img src="assets/images/loading3.gif"> -->
+
+        </div>
+    </cdk-virtual-scroll-viewport>
+</div>

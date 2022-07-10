@@ -1,0 +1,31 @@
+<div>
+    <h3 id="header">People I like</h3>
+    <div class="cart-items" *ngIf="People.length > 0">
+        <div class="person" *ngFor="let person of People">
+            <span id="name">{{ person.name.title }} {{ person.name.first }}{{ person.name.last }}</span>
+            <span id="phone">{{ person.phone }}</span>
+            <button mat-icon-button color="primary" aria-label="Example icon button with a home icon">
+                <mat-icon>phone</mat-icon>
+            </button>
+            <button (click)="removePerson(person.email)" mat-icon-button color="warn"
+                aria-label="Example icon button with a home icon">
+                <mat-icon>delete</mat-icon>
+            </button>
+        </div>
+        <mat-divider></mat-divider>
+        <div class="person">
+            <button mat-raised-button color="ascent">
+                Follow All
+            </button>
+            <button (click)="clearLiked()" mat-raised-button color="warn">
+                Unlike All
+            </button>
+        </div>
+    </div>
+    <div class="cart-items" *ngIf="People.length <= 0">
+        <p>
+            Ooops! you haven`t Liked any body today
+        </p>
+    </div>
+
+</div>

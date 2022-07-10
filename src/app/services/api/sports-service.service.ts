@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, map, Observable, of, retry } from 'rxjs';
 import { ajax } from 'rxjs/ajax';
+import * as FileSaver from 'file-saver';
 
 
 @Injectable({
@@ -46,4 +47,12 @@ export class SportsServiceService {
     let gen = gender.toLowerCase();
     return this.http.get<any>(`https://randomuser.me/api/?nat=${nation}&gender=${gen}&results=${page_size}`);
   }
+
+  exportFile(type: string, page: number, page_size: number) {
+    return this.http.get(`https://randomuser.me/api/?page=${page}&results=${page_size}&format=${type}`);
+
+  }
+
+
+
 }

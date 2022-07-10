@@ -42,7 +42,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSort) sort!: MatSort;
 
 
-
   constructor(
     public dialog: MatDialog, private splashScreenStateService: SplashScreenStateService,
     private api: SportsServiceService
