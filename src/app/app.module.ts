@@ -40,7 +40,9 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatToolbarModule } from '@angular/material/toolbar';
-
+import { BitcoinListComponent } from './components/bitcoin-sockets/bitcoin-list/bitcoin-list.component';
+import { BitcoinDetailsComponent } from './components/bitcoin-sockets/bitcoin-details/bitcoin-details.component';
+import { NgChartsModule } from 'ng2-charts';
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,12 +56,15 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     UsersComponentComponent,
     DisplayLikedComponent,
     SnackbarComponent,
-    BitcoinSocketsComponent
+    BitcoinSocketsComponent,
+    BitcoinListComponent,
+    BitcoinDetailsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    NgChartsModule,
     MatTableModule,
     BrowserAnimationsModule,
     MatDividerModule,

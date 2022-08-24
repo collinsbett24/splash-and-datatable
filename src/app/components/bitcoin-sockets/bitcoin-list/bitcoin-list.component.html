@@ -1,0 +1,126 @@
+<div class="banner">
+    <div class="container">
+        <div class="header">
+            <h2>Crypto Checkers</h2>
+            <h6>
+                Check All the crypto Currency updates
+            </h6>
+        </div>
+        <div class="sub-header">
+            <marquee behavior="scroll" onmouseover="stop()" onmouseleave="start()" loop="infinite" direction="left">
+                <div *ngFor="let list of List" class="row">
+                    <mat-card class="card">
+                        <div class="marquee-coin">
+                            <div class="img"><img src="{{list.item.small}}"></div>
+                            <div class="name"> {{list.item.name}}</div>
+
+                        </div>
+                    </mat-card>
+                </div>
+            </marquee>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="bitcoin-table">
+        <mat-form-field appearance="standard">
+            <mat-label>Filter</mat-label>
+            <input matInput (keyup)="applyFilter($event)" placeholder="Coin Name" #input>
+        </mat-form-field>
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table" matSort>
+            <!-- Position Column
+            <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>No.</th>
+                <td mat-cell *matCellDef="let element; let i = index">{{i + 1}}</td>
+            </ng-container> -->
+
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="symbol">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Symbol</th>
+                <td mat-cell *matCellDef="let element">{{element.symbol}}</td>
+            </ng-container>
+
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+                <td mat-cell *matCellDef="let element">{{element.name}}</td>
+            </ng-container>
+
+            <!-- Weight Column -->
+            <ng-container matColumnDef="image">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Image</th>
+                <td mat-cell *matCellDef="let element"><img class="bitcoin-image" src="{{element.image }}"></td>
+            </ng-container>
+
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="market_cap">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Market Cap</th>
+                <td mat-cell *matCellDef="let element">{{element.market_cap }}</td>
+            </ng-container>
+
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="rank">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Rank</th>
+                <td mat-cell *matCellDef="let element">{{element.market_cap_rank }}</td>
+            </ng-container>
+            <!-- Name Column -->
+            <ng-container matColumnDef="current_price">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Current Price</th>
+                <td mat-cell *matCellDef="let element">{{element.current_price}}</td>
+            </ng-container>
+
+            <!-- Weight Column -->
+            <ng-container matColumnDef="last_updated">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Last Updated</th>
+                <td mat-cell *matCellDef="let element">{{element.last_updated}}</td>
+            </ng-container>
+
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="material">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Material</th>
+                <td mat-cell *matCellDef="let element">{{element.material}}</td>
+            </ng-container>
+            <!-- Name Column -->
+            <ng-container matColumnDef="quantity_per_box">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Q/box</th>
+                <td mat-cell *matCellDef="let element">{{element.quantity_per_box}}</td>
+            </ng-container>
+
+            <!-- Weight Column -->
+            <ng-container matColumnDef="space">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Space</th>
+                <td mat-cell *matCellDef="let element">{{element.space}}</td>
+            </ng-container>
+
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="picture">
+                <th mat-header-cell *matHeaderCellDef>Tile Picture</th>
+                <td mat-cell *matCellDef="let element"><img src="{{element.image_name}}"></td>
+            </ng-container>
+
+            <!-- <ng-container matColumnDef="actions" stickyEnd>
+                <th mat-header-cell *matHeaderCellDef aria-label="row actions">&nbsp;</th>
+                <td mat-cell *matCellDef="let element">
+                    <button mat-icon-button [matMenuTriggerFor]="menu"
+                        aria-label="Example icon-button with a menu">
+                        <mat-icon>more_vert</mat-icon>
+                    </button>
+                    <mat-menu #menu="matMenu">
+                        <button mat-menu-item (click)="openEditDialog()">
+                            <mat-icon color="primary">edit</mat-icon>
+                            <span>Edit</span>
+                        </button>
+                        <button mat-menu-item>
+                            <mat-icon color="warn">delete</mat-icon>
+                            <span>Delete</span>
+                        </button>
+                    </mat-menu>
+                </td>
+            </ng-container> -->
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="clickedRows(row)"></tr>
+        </table>
+        <mat-paginator [pageSizeOptions]="[15, 25, 50, 100]" aria-label="Select page of users"></mat-paginator>
+    </div>
+</div>

@@ -66,6 +66,7 @@
 }
 
 .main {
+    width: 100%;
     /* padding-top: 2rem; */
     background-color: rgb(245, 244, 244);
     height: 90%;
@@ -89,19 +90,13 @@
 .content {
     display: flex;
     /* padding-left: 5rem; */
-    padding: 10px;
+    /* padding: 10px; */
     height: 100%;
     padding-bottom: 2rem;
     /* margin-bottom: 20rem; */
 
 }
 
-.card {
-    margin: 10px;
-    display: inline-block;
-    align-items: center;
-    justify-content: space-evenly;
-}
 
 .contact {
     display: flex;
@@ -121,12 +116,19 @@
 .vitualization-table {
     height: calc(100vh - 64px);
     /* height: ; */
-    width: 90%;
+    width: 80%;
     border: none;
     overflow: scroll;
     padding-top: 0rem;
     box-shadow: 2rem;
 }
+
+.vitualization-table .card {
+    /* width: 100%; */
+    display: inline-flex;
+    margin: 1rem;
+}
+
 
 .contact .phone {
     width: 30%;

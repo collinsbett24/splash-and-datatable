@@ -1,0 +1,117 @@
+.banner {
+    color: white;
+    background-image: url('../../../../assets/images/bitcoin.jpg');
+    background-repeat: repeat;
+    width: 100%;
+    justify-self: center;
+    height: 40%;
+    /* width: 80%; */
+}
+
+.container {
+    margin-left: 10rem;
+    margin-right: 10rem;
+}
+
+.row {
+    justify-content: space-around;
+    margin-left: auto;
+    margin-right: auto;
+    display: inline-block;
+    margin: 2rem;
+}
+
+.card {
+
+    width: 10rem;
+    display: flex;
+    justify-content: center;
+}
+
+.img {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.name {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    text-overflow: ellipsis;
+    padding: 10px;
+    text-decoration: wavy;
+    text-decoration: underline;
+}
+
+.bitcoin-table {
+    margin-top: 3rem;
+    padding-bottom: 6rem;
+
+}
+
+.demo-table {
+    border-radius: 1rem;
+}
+
+.demo-table tr:hover {
+    text-decoration: underline;
+    cursor: pointer;
+    font-weight: bold;
+    color: red;
+}
+
+
+
+.demo-table .bitcoin-image {
+    height: 3rem;
+}
+
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+}
+
+/* Structure */
+.example-container {
+    position: relative;
+}
+
+.example-table-container {
+    position: relative;
+    min-height: 200px;
+    max-height: 400px;
+    overflow: auto;
+}
+
+table {
+    width: 100%;
+}
+
+.example-loading-shade {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 56px;
+    right: 0;
+    background: rgba(0, 0, 0, 0.15);
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.example-rate-limit-reached {
+    max-width: 360px;
+    text-align: center;
+}
+
+/* Column Widths */
+.mat-column-number,
+.mat-column-state {
+    max-width: 64px;
+}
+
+.mat-column-created {
+    max-width: 124px;
+}

@@ -1,10 +1,10 @@
 export interface Bitcoin {
-    exchange: string,
-    base: string,
-    quote: string,
-    direction: string,
-    price: number,
-    volume: number,
-    timestamp: number,
-    priceUsd: number
+    id: string,
+    symbol: string,
+    name: string,
+    image: string,
+    market_cap: number,
+    market_cap_rank: number,
+    current_price: number,
+    last_updated: Date
 }
