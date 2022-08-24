@@ -8,7 +8,7 @@ import { SplashScreenStateService } from 'src/app/services/splash-screen-state.s
   templateUrl: './bitcoin-sockets.component.html',
   styleUrls: ['./bitcoin-sockets.component.css']
 })
-export class BitcoinSocketsComponent implements OnInit, OnDestroy, AfterViewInit {
+export class BitcoinSocketsComponent implements OnInit, AfterViewInit {
 
   constructor(public bitcoinapi: BitcoinServiceService, private splashScreenStateService: SplashScreenStateService) { }
   ngAfterViewInit(): void {
@@ -19,16 +19,7 @@ export class BitcoinSocketsComponent implements OnInit, OnDestroy, AfterViewInit
 
   ngOnInit(): void {
 
-    this.bitcoinapi.openWebSocket();
-    setTimeout(() => {
-      this.bitcoinapi.closeSocket();
-    }, 10000)
-
   }
 
-
-  ngOnDestroy(): void {
-    this.bitcoinapi.closeSocket();
-  }
 
 }

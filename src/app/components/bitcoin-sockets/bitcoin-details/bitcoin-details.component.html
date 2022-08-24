@@ -1,0 +1,29 @@
+<div class="container">
+    <mat-card *ngIf="bitcoinInfo" class="bitcoin-info">
+        <div class="img">
+            <img src="{{bitcoinInfo.image.large}}">
+        </div>
+        <div>
+            <h3>{{bitcoinInfo.name}}</h3>
+            <p>
+                {{bitcoinInfo.description.en}}
+            </p>
+            <div class="other-info">
+                <b>Rank :</b>{{bitcoinInfo.market_cap_rank}}
+            </div>
+            <div class="other-info">
+                <b>Current Price : </b>{{bitcoinInfo.market_data.current_price.usd | currency }}
+            </div>
+            <div class="other-info">
+                <b>Market Cap : </b>{{bitcoinInfo.market_data.market_cap.usd | currency}}
+            </div>
+        </div>
+    </mat-card>
+    <mat-card>
+        <div style="display: block;">
+            <canvas baseChart width="400" height="400" [type]="'line'" [data]="lineChartData"
+                [options]="lineChartOptions" [legend]="lineChartLegend">
+            </canvas>
+        </div>
+    </mat-card>
+</div>
