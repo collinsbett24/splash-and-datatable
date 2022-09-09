@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { SplashScreenStateService } from 'src/app/services/splash-screen-state.service';
 import { ServiceService } from '../service.service';
 import { ChartConfiguration, ChartOptions, ChartType } from "chart.js";
+import { response } from 'express';
 
 @Component({
   selector: 'app-bitcoin-details',
@@ -13,18 +14,12 @@ export class BitcoinDetailsComponent implements OnInit {
 
   public lineChartData: ChartConfiguration<'line'>['data'] = {
     labels: [
-      'January',
-      'February',
-      'March',
-      'April',
-      'May',
-      'June',
-      'July'
+      'January', 'February', 'March', 'April', 'May', 'June', 'July'
     ],
     datasets: [
       {
         data: [65, 59, 80, 81, 56, 55, 40],
-        label: 'Series A',
+        label: String(this.route.snapshot.paramMap.get('id')).toUpperCase(),
         fill: true,
         tension: 0.5,
         borderColor: 'black',
@@ -50,13 +45,22 @@ export class BitcoinDetailsComponent implements OnInit {
     setTimeout(() => {
       this.splashScreenStateService.stop();
     }, 3000);
+
+    this.getCoinGraphs();
   }
 
   getBitcoin(): void {
     const id = String(this.route.snapshot.paramMap.get('id'));
     this.api.getCurrencyById(id).subscribe((response: any) => {
-      console.log(id, response);
+      // console.log(id, response);
       this.bitcoinInfo = response
+    });
+  }
+
+  getCoinGraphs() {
+    const id = String(this.route.snapshot.paramMap.get('id'));
+    this.api.getGraphicalChart(id).subscribe((response: any) => {
+      console.log(response);
     });
   }
 

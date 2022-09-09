@@ -2,14 +2,23 @@
     margin-left: 6rem;
     margin-right: 6rem;
     min-height: 100vh;
+    display: flex;
+    justify-content: space-between;
 }
 
 .bitcoin-info {
+    max-height: 80vh;
     width: 25%;
     display: block;
-    overflow: hidden;
+    overflow: clip;
     text-overflow: ellipsis;
     padding: 1rem;
+}
+
+.description {
+    height: 100px;
+    overflow: clip;
+    text-overflow: ellipsis;
 }
 
 .bitcoin-info .other-info {
@@ -22,4 +31,13 @@
 .img {
     display: flex;
     justify-content: center;
+}
+
+.bitcoin_graph {
+    width: 65%;
+    height: max-content;
+}
+
+.canvas {
+    width: 100%;
 }

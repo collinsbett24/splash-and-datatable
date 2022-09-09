@@ -16,7 +16,7 @@ export class ServiceService {
     return this.http.get<any>("https://api.coingecko.com/api/v3/search/trending");
   }
 
-  getGraphicalChart(id: any) {
+  getGraphicalChart(id: string) {
     return this.http.get<any>(`https://api.coingecko.com/api/v3/coins/${id}/market_chart?vs_currency=usd&days=10`);
   }
 

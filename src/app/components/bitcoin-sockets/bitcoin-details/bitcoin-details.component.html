@@ -5,7 +5,7 @@
         </div>
         <div>
             <h3>{{bitcoinInfo.name}}</h3>
-            <p>
+            <p class="description">
                 {{bitcoinInfo.description.en}}
             </p>
             <div class="other-info">
@@ -19,9 +19,9 @@
             </div>
         </div>
     </mat-card>
-    <mat-card>
+    <mat-card class="bitcoin_graph">
         <div style="display: block;">
-            <canvas baseChart width="400" height="400" [type]="'line'" [data]="lineChartData"
+            <canvas class="canvas" baseChart height="510" [type]="'line'" [data]="lineChartData"
                 [options]="lineChartOptions" [legend]="lineChartLegend">
             </canvas>
         </div>

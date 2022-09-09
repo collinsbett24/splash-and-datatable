@@ -116,7 +116,7 @@
 .vitualization-table {
     height: calc(100vh - 64px);
     /* height: ; */
-    width: 80%;
+    width: 83%;
     border: none;
     overflow: scroll;
     padding-top: 0rem;
@@ -126,7 +126,7 @@
 .vitualization-table .card {
     /* width: 100%; */
     display: inline-flex;
-    margin: 1rem;
+    margin: .5rem;
 }
 
 
